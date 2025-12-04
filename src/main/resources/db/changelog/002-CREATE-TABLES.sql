@@ -1,0 +1,59 @@
+-- USERS Table :
+
+CREATE TABLE users(
+id BIGSERIAL PRIMARY KEY ,
+user_id VARCHAR(100) NOT NULL UNIQUE,
+name VARCHAR(100) NOT NULL ,
+email VARCHAR(100) UNIQUE NOT NULL,
+password VARCHAR(100) NOT NULL,
+role role_enum NOT NULL ,  -- enum
+age INTEGER NOT NULL,
+gender VARCHAR(100) NOT NULL,
+
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+created_by BIGINT,
+updated_by BIGINT
+);
+
+
+-- MEDICAL PACKAGE Table :
+CREATE TABLE medical_package(
+id BIGSERIAL PRIMARY KEY,
+package_id VARCHAR(100) NOT NULL UNIQUE,
+name VARCHAR(100) NOT NULL,
+description TEXT,
+category package_category,  -- enum
+price INTEGER NOT NULL,
+image VARCHAR(100),
+user_id BIGINT NOT NULL,
+
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+created_by BIGINT,
+updated_by BIGINT,
+
+FOREIGN KEY(user_id) REFERENCES users(id)  -- fk
+);
+
+
+-- APPOINTMENTS
+CREATE TABLE appointments(
+id BIGSERIAL PRIMARY KEY,
+appointment_id VARCHAR(100) NOT NULL UNIQUE,
+date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+appointment_status appointment_status NOT NULL DEFAULT 'PENDING',
+user_id BIGINT NOT NULL,
+package_id BIGINT NOT NULL,
+
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+created_by BIGINT,
+updated_by BIGINT,
+
+FOREIGN KEY(user_id) REFERENCES users(id),  -- fk
+FOREIGN KEY(package_id) REFERENCES medical_package(id)
+);

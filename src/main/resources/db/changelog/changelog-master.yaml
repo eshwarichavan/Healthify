@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-CREATE-ENUMS
+      author: Eshwari Chavan
+      comment: create all required enums for the tables
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            encoding: utf8
+            path: 001-CREATE-ENUMS.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+
+
+  - changeSet:
+      id: 002-CREATE-TABLES
+      author: Eshwari Chavan
+      comment: create all required tables
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            encoding: utf8
+            path: 002-CREATE-TABLES.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+

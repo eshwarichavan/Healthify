@@ -1,0 +1,18 @@
+-- ENUMS FOR THE TABLE :
+
+CREATE TYPE role_enum AS ENUM(
+'ADMIN',
+'PATIENT'
+);
+
+CREATE TYPE package_category AS ENUM(
+'THYROID_TEST',
+'BLOOD_TEST',
+'CANCER_TEST'
+);
+
+CREATE TYPE appointment_status AS ENUM(
+'PENDING',
+'APPROVED',
+'CANCELLED'
+);
