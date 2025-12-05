@@ -26,3 +26,31 @@ databaseChangeLog:
             splitStatements: true
             stripComments: true
 
+
+
+  - changeSet:
+      id: 004-REMOVE-TABLE-COLUMN
+      author: Eshwari Chavan
+      comment: Removed table column
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            encoding: utf8
+            path:  004-REMOVE-TABLE-COLUMN.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true
+
+
+  - changeSet:
+      id: 005-ALTER-USERID-TYPE
+      author: Eshwari Chavan
+      comment: alter user_id type to varchar
+      changes:
+        - sqlFile:
+            dbms: postgresql
+            encoding: utf8
+            path: 005-ALTER-USERID-TYPE.sql
+            relativeToChangelogFile: true
+            splitStatements: true
+            stripComments: true

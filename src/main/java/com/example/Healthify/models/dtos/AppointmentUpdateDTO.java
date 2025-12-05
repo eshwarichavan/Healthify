@@ -1,5 +1,6 @@
 package com.example.Healthify.models.dtos;
 
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,6 +15,9 @@ import java.time.LocalDateTime;
 @Builder
 public class AppointmentUpdateDTO {
 
-    @NotNull(message = "dateTime is required")
+    @NotNull(message = "Appointment date/time is required")
+    @Future(message = "Appointment date must be in the future")
     private LocalDateTime dateTime;
+
+    private Long packageId;
 }

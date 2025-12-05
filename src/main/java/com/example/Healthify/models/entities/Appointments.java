@@ -50,4 +50,7 @@ public class Appointments {
 
     @Column(name = "updated_by")
     private Long updatedBy;
+
+
+
 }

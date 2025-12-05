@@ -14,13 +14,11 @@ import java.util.Optional;
 @Repository
 public interface AppointmentRepository extends JpaRepository<Appointments, Long> {
 
-    Optional<Appointments> findByAppointmentId(String appointmentId);
-
     Page<Appointments> findByUser_UserId(String userId, Pageable pageable);
 
     boolean existsByUser_UserIdAndDateTime(String userId, LocalDateTime dateTime);
 
-    @Modifying
-    @Transactional
+    Optional<Appointments> findByAppointmentId(String appointmentId);
+
     void deleteByAppointmentId(String appointmentId);
 }

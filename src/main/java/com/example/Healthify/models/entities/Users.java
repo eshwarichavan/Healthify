@@ -62,7 +62,7 @@ public class Users{
     // user to package (one user has only one package)
     @OneToOne
     @JoinColumn(name = "package_id")
-    private MedicalPackage packageId;
+    private MedicalPackage medicalPackage;
 
     // user to appointment (One User can have mul. appointments)
     @OneToMany(mappedBy = "user")

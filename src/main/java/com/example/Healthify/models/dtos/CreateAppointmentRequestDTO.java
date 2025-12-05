@@ -1,6 +1,7 @@
 package com.example.Healthify.models.dtos;
 
 import com.example.Healthify.models.enums.AppointmentStatus;
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -16,9 +17,10 @@ import java.time.LocalDateTime;
 @Builder
 public class CreateAppointmentRequestDTO {
 
-    @NotBlank(message = "packageId is required")
+    @NotBlank(message = "package Id is required")
     private String packageId;
 
-    @NotNull(message = "dateTime is required")
+    @NotNull(message = "Appointment date/time is required")
+    @Future(message = "Appointment date must be in the future")
     private LocalDateTime dateTime;
 }

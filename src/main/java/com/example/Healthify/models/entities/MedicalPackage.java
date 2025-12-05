@@ -42,8 +42,8 @@ public class MedicalPackage {
     private String imageURL;
 
     // package to user (One package belongs to only one user)
-    @OneToOne(mappedBy = "packageId")
-    private Users user;
+//    @OneToOne(mappedBy = "packageId")
+//    private Users user;
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
