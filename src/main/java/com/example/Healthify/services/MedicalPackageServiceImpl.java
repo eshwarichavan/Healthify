@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -74,7 +75,6 @@ public class MedicalPackageServiceImpl {
     }
 
 
-
     // get packages using name ,price & category :
     public Page<PackageResponseDTO> getPackages(String name, String category, Integer minPrice, Integer maxPrice, int page, int size) {
 
@@ -94,6 +94,15 @@ public class MedicalPackageServiceImpl {
 
         return data.map(this::mapToResponse);
     }
+
+
+    //search package by name :
+    public PackageResponseDTO getPackageByName(String name) {
+        MedicalPackage p = medicalPackageRepository.findByNameIgnoreCase(name)
+                .orElseThrow(() -> new CustomException("Package not found", HttpStatus.NOT_FOUND));
+        return mapToResponse(p);
+    }
+
 
 
 

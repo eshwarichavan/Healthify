@@ -5,6 +5,7 @@ import com.example.Healthify.utils.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -36,6 +37,18 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/users/**").hasRole("ADMIN")
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html" ).permitAll()
+
+                        .requestMatchers(HttpMethod.POST, "/api/packages/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT,  "/api/packages/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE,"/api/packages/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/packages/**").permitAll()
+
+
+                        .requestMatchers(HttpMethod.POST, "/api/appointment/**").permitAll()
+                        .requestMatchers(HttpMethod.GET,  "/api/appointment/**").permitAll()
+                        .requestMatchers(HttpMethod.PUT,  "/api/appointment/status/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT,  "/api/appointment/**").permitAll()
+                        .requestMatchers(HttpMethod.DELETE,"/api/appointment/**").permitAll()
 
                         .anyRequest().authenticated()
                 )

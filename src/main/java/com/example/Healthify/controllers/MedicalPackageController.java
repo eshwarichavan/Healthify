@@ -32,20 +32,27 @@ public class MedicalPackageController {
         return medicalPackageService.getPackages(name, category, minPrice, maxPrice, page, size);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{packageId}")
     @Operation(summary = "get package by id")
     public PackageResponseDTO getById(@PathVariable String packageId) {
         return medicalPackageService.getPackageById(packageId);
     }
 
-    @PostMapping
+    @GetMapping("/name/{name}")
+    @Operation(summary = "Get package by name")
+    public PackageResponseDTO getByName(@PathVariable String name) {
+        return medicalPackageService.getPackageByName(name);
+    }
+
+
+    @PostMapping("/create")
     public PackageResponseDTO create(@Valid
                                          @RequestBody PackageCreateDTO req) {
         return medicalPackageService.createPackage(req);
     }
 
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{packageId}")
     @Operation(summary = "update packages details by packageId")
     public PackageResponseDTO update(@PathVariable String packageId,
                                          @Valid
@@ -54,8 +61,7 @@ public class MedicalPackageController {
     }
 
 
-
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{packageId}")
     @Operation(summary = "delete packages by packageId")
     public void delete(@PathVariable String packageId) {
         medicalPackageService.deletePackage(packageId);

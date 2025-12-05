@@ -21,4 +21,6 @@ public interface MedicalPackageRepository extends JpaRepository<MedicalPackage,L
     Page<MedicalPackage> findByPriceBetween(Integer min, Integer max, Pageable pageable);
 
     void deleteByPackageId(String packageId);
+
+    Optional<MedicalPackage> findByNameIgnoreCase(String name);
 }
