@@ -56,6 +56,7 @@ public class AppointmentServicesImpl {
                 .dateTime(req.getDateTime())
                 .appointmentStatus(AppointmentStatus.PENDING)
                 .user(user)
+                .pkg(pkg)
                 .createdAt(LocalDateTime.now())
                 .build();
 

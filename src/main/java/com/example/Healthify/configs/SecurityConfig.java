@@ -2,6 +2,7 @@ package com.example.Healthify.configs;
 
 import com.example.Healthify.filter.JWTAuthFilter;
 import com.example.Healthify.utils.JWTUtil;
+import org.apache.tomcat.util.http.Method;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -59,6 +60,7 @@ public class SecurityConfig {
 
         return http.build();
     }
+
 
 
 

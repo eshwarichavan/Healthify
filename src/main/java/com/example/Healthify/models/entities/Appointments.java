@@ -38,6 +38,11 @@ public class Appointments {
     @JoinColumn(name = "user_id")
     private Users user;
 
+    @ManyToOne
+    @JoinColumn(name = "package_id")
+    private MedicalPackage pkg;
+
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 

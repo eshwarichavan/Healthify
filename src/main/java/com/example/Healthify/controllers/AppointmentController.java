@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/api/appointments")
+@RequestMapping("/api/appointment")
 @Tag(name="Appointments APIs" ,description = "This endpoints will do all the medical appointments")
 public class AppointmentController {
 
@@ -45,7 +45,6 @@ public class AppointmentController {
 
 
     @PostMapping("/book")
-    @PreAuthorize("hasRole('PATIENT') or hasRole('ADMIN')")
     @Operation(summary = "Book an appointment")
     public AppointmentResponseDTO book(@Valid
                                            @RequestBody CreateAppointmentRequestDTO request) {
@@ -58,7 +57,6 @@ public class AppointmentController {
 
 
     @GetMapping
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @Operation(summary = "get all appointments added paginition")
     public Page<AppointmentResponseDTO> getAll(
             @RequestParam(defaultValue = "0") int page,
@@ -71,7 +69,6 @@ public class AppointmentController {
 
 
     @PutMapping("/update/{appointmentId}")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     @Operation(summary = "update appointments details by appointment Id")
     public AppointmentResponseDTO update(
             @PathVariable String appointmentId,
@@ -87,7 +84,6 @@ public class AppointmentController {
 
 
     @PutMapping("/status/{appointmentId}")
-    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "update appointment status by appointmentId")
     public AppointmentResponseDTO updateStatus(
             @Valid
@@ -100,7 +96,6 @@ public class AppointmentController {
 
 
     @DeleteMapping("/delete/{appointmentId}")
-    @PreAuthorize("hasRole('ADMIN')")
     @Operation(summary = "delete by appointment Id")
     public void delete(@PathVariable String appointmentId) {
         service.deleteAppointment(appointmentId);
